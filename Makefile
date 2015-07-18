@@ -14,16 +14,18 @@ CC = gcc
 # -Wall turns on most, but not all, compiler warnings
 FLAGS = -I./ -O -g -Wall 
 
-# Program name
-PROGRAM = lfsearch
+# Required files for both app
+SOURCE = infile_search.c util.c 
 
-# Source files
-SOURCE = *.c
+default: all 
 
-default: unittest
+all: lfs_shm lfs_mc
 
-unittest: $(PROGRAM).c
-	$(CC) $(CFLAGS) -o $(PROGRAM) $(SOURCE) -lcrypto -lssl -lrt
+lfs_shm: 
+	$(CC) $(CFLAGS) -o lfs_shm lfs_shm.c shared_memory.c $(SOURCE) -lcrypto -lssl -lrt
+
+lfs_mc: 
+	$(CC) $(CFLAGS) -o lfs_mc lfs_mc.c memcached.c $(SOURCE) -lcrypto -lmemcached -lpthread
 
 clean:
-	-rm -f $(PROGRAM)
+	-rm -f lfs_shm lfs_mc
