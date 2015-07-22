@@ -22,7 +22,7 @@ SOURCE = $(UNITTEST).c
 
 default: all
 
-all: infile_search shared_memory util memcached
+all: infile_search shared_memory util memcached read_config
 
 infile_search:
 	$(CC) $(CFLAGS) -o infile_search_test ../util.c ../infile_search.c infile_search_$(UNITTEST).c $(SOURCE) -lcrypto -lssl 
@@ -33,8 +33,11 @@ shared_memory:
 memcached:
 	$(CC) $(CFLAGS) -o memcached_test ../util.c ../memcached.c memcached_$(UNITTEST).c $(SOURCE) -lcrypto -lmemcached -lpthread
 
+read_config:
+	$(CC) $(CFLAGS) -o read_config_test ../util.c ../read_config.c read_config_$(UNITTEST).c $(SOURCE) -lcrypto -lssl
+
 util:
 	$(CC) $(CFLAGS) -o util_test ../util.c util_$(UNITTEST).c $(SOURCE) -lcrypto -lssl
 
 clean:
-	-rm -f util_test infile_search_test shared_memory_test memcached_test
+	-rm -f util_test infile_search_test shared_memory_test memcached_test read_config_test

@@ -54,6 +54,14 @@
 #define INFILE_SEARCH_ERROR_OPENDIR 401
 #define INFILE_SEARCH_ERROR_READDIR 402
 
+/* read config */
+
+#define CONFIG_DELIM "="
+#define CONFIG_BUFFER 256
+
+#define CONFIG_ERROR_FILE_READ 501
+#define CONFIG_ERROR_FILE_OPEN 502
+
 /* END */
 
 #endif

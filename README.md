@@ -89,5 +89,38 @@ Now, if you run the ipcs command you will see the new size of each segments:
 	max total shared memory (kbytes) = 8388608
 	min seg size (bytes) = 1
 
+## Config file
 
+A Config file can be specified to allow parameters to be parse automatically.
 
+### search_dir:
+
+This allow the script to use a default search path.
+
+eg:
+
+	search_dir=/usr/share/base-files/
+
+### action:
+
+This allow the script to use a default action.
+
+eg:
+
+	action=scan
+
+### limit
+
+This will limit the number of records processed by the script
+
+eg:
+
+	limit=100
+
+### read_buffer
+
+This will limit the size (bytes) of the buffer read when looking for a string in a file.
+
+eg:
+
+	read_buffer=1024

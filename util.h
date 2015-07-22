@@ -1,9 +1,9 @@
 #include "define.h"
 
+#include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-//#include <ftw.h>
 #include <openssl/md5.h>
 #include <string.h>
 #include <stdio.h>
