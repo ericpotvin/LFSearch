@@ -81,7 +81,7 @@ int test_scanDir() {
 		"/tmp/test/folder_2/abc2/index.html"
 	};
 
-	for(; i < 7; ++i) {
+	for(; i < 5; ++i) {
 		if (stat(paths[i], &st) == -1) {
 			mkdir(paths[i], 0755);
 			createFileTest((char *)files[i]);

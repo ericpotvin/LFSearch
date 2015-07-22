@@ -7,9 +7,11 @@
 memcached_st * mcConnect(char * server, int port) {
 
 	char mcServer[256];
+	memcached_st *memc = NULL;
+
 	snprintf(mcServer, sizeof mcServer, "--SERVER=%s:%d", server, port);
 
-	memcached_st *memc = memcached(mcServer, strlen(mcServer));
+	memc = memcached(mcServer, strlen(mcServer));
 
 	if(memc == NULL) {
 		if(DEBUG) {
@@ -18,6 +20,7 @@ memcached_st * mcConnect(char * server, int port) {
 	}
 
 	return memc;
+
 }
 
 /**

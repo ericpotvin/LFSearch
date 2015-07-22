@@ -88,9 +88,9 @@ unsigned int shmFetch(char * key, char ** data) {
 		return SHM_ERROR_STAT;
 	}
 
-	*data = mmap(NULL, f.st_size, PROT_READ | PROT_WRITE, MAP_SHARED , shm, 0);
+	(*data) = mmap(NULL, f.st_size, PROT_READ | PROT_WRITE, MAP_SHARED , shm, 0);
 
-	if(*data == MAP_FAILED) {
+	if((*data) == MAP_FAILED) {
 		close(shm);
 		return SHM_ERROR_MMAP;
 	}
