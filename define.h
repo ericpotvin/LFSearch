@@ -58,6 +58,10 @@
 
 #define CONFIG_DELIM "="
 #define CONFIG_BUFFER 256
+#define CONFIG_STRUCT_SEARCH_DIR "search_dir"
+#define CONFIG_STRUCT_ACTION "action"
+#define CONFIG_STRUCT_LIMIT "limit"
+#define CONFIG_STRUCT_READ_BUFFER "read_buffer"
 
 #define CONFIG_ERROR_FILE_READ 501
 #define CONFIG_ERROR_FILE_OPEN 502

@@ -37,16 +37,16 @@ int getConfig(char * filename, struct config * conf) {
 		}
 		strncpy(value, trim(s), CONFIG_BUFFER);
 
-		if(strcmp(name, "search_dir") == 0) {
+		if(strcmp(name, CONFIG_STRUCT_SEARCH_DIR) == 0) {
 			strncpy((*conf).search_dir, value, CONFIG_BUFFER);
 		}
-		else if(strcmp(name, "action") == 0) {
+		else if(strcmp(name, CONFIG_STRUCT_ACTION) == 0) {
 			strncpy((*conf).action, value, CONFIG_BUFFER);
 		}
-		else if(strcmp(name, "limit") == 0) {
+		else if(strcmp(name, CONFIG_STRUCT_LIMIT) == 0) {
 			(*conf).limit = atoi(value);
 		}
-		else if(strcmp(name, "read_buffer") == 0) {
+		else if(strcmp(name, CONFIG_STRUCT_READ_BUFFER) == 0) {
 			(*conf).read_buffer = atoi(value);
 		}
 	}
