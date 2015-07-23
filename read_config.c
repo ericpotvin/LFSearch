@@ -3,7 +3,7 @@
 
 /**
  */
-int getConfig(char * filename, struct config * conf) {
+unsigned int getConfig(char * filename, struct config * conf) {
 
 	FILE *file;
 	char *s;
@@ -49,8 +49,44 @@ int getConfig(char * filename, struct config * conf) {
 		else if(strcmp(name, CONFIG_STRUCT_READ_BUFFER) == 0) {
 			(*conf).read_buffer = atoi(value);
 		}
+		else if(strcmp(name, CONFIG_STRUCT_OUTPUT) == 0) {
+			strncpy((*conf).output, value, CONFIG_BUFFER);
+		}
 	}
 	fclose(file);   
+
+	return validateConfig(conf);
+}
+
+/**
+ */
+unsigned int validateConfig(struct config * conf) {
+
+	if(!isDir((*conf).search_dir)) {
+		return CONFIG_ERROR_BAD_CONFIG_DIR;
+	}
+
+	if(
+		strcmp((*conf).action, CONFIG_VALID_ACTION_SCAN) != 0 &&
+		strcmp((*conf).action, CONFIG_VALID_ACTION_GET) != 0
+	) {
+		return CONFIG_ERROR_BAD_CONFIG_ACTION;
+	}
+
+	if((*conf).limit <= 0) {
+		return CONFIG_ERROR_BAD_CONFIG_LIMIT;
+	}
+
+	if((*conf).read_buffer <= 0) {
+		return CONFIG_ERROR_BAD_CONFIG_BUFFER;
+	}
+
+	if(
+		strcmp((*conf).output, CONFIG_VALID_OUTPUT_SCREEN) != 0 &&
+		strcmp((*conf).output, CONFIG_VALID_OUTPUT_FILE) != 0
+	) {
+		return CONFIG_ERROR_BAD_CONFIG_OUTPUT;
+	}
 
 	return STATUS_SUCCESS;
 }

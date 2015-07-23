@@ -4,6 +4,7 @@ struct config
   char action[CONFIG_BUFFER];
   int limit;
   int read_buffer;
+	char output[CONFIG_BUFFER];
 } config;
 
 /**
@@ -12,6 +13,15 @@ struct config
  *
  * Input: (Char*) filename: The Filename
  * Input: (Struct config *) conf: The config structure
- * Return: Int
+ * Return: unsigned Int
  */
-int getConfig(char * filename, struct config * conf);
+unsigned int getConfig(char * filename, struct config * conf);
+
+/**
+ * validateConfig()
+ * Validate the configuration file
+ *
+ * Input: (Struct config *) conf: The config structure
+ * Return: unsigned Int
+ */
+unsigned int validateConfig(struct config * conf);

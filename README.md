@@ -124,3 +124,15 @@ This will limit the size (bytes) of the buffer read when looking for a string in
 eg:
 
 	read_buffer=1024
+
+### output
+
+This will allow the result to be either displayed or saved to a file
+
+Allowed output:
+
+* screen
+* file (raw data)
+
+eg:
+	output=screen
