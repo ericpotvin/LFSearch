@@ -1,10 +1,10 @@
 struct config 
 {
-  char search_dir[CONFIG_BUFFER];
-  char action[CONFIG_BUFFER];
+  char search_dir[CONFIG_DEFAULT_BUFFER];
+  char action[CONFIG_DEFAULT_BUFFER];
   int limit;
   int read_buffer;
-	char output[CONFIG_BUFFER];
+	char output[CONFIG_DEFAULT_BUFFER];
 } config;
 
 /**

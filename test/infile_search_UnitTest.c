@@ -61,10 +61,12 @@ int test_scanFile() {
 
 /**
  */
-int test_scanDir() {
+int test_getListDir() {
 	int valid = 0;
 	int i = 0;
+	int count = 0;
 	struct stat st = {0};
+	char *list[CONFIG_DEFAULT_LIMIT];
 
 	char * paths[] = {
 		"/tmp/test/",
@@ -87,12 +89,16 @@ int test_scanDir() {
 			createFileTest((char *)files[i]);
 		}
 	}
-	
-	scanDir("/tmp/test", "900");
 
-	scanDir("/tmp/test", "apu nahasapeemapetilon");
+	getDirList("/tmp", list, &count);
 
-	// delete
+	valid += assertTrue("test_getListDir: The list has 5 files", count == 5);
+
+	valid += assertTrue("test_getListDir: The last element is '/tmp/test/index.html'", strcmp(list[4], "/tmp/test/index.html") == 0);
+
+	valid += assertTrue("test_getListDir: The 3rd element is '/tmp/test/folder_1/abc1/index.html'", strcmp(list[2], "/tmp/test/folder_2/index.html") == 0);
+
+	// delete dir
 	rmrf("/tmp/test");
 	return valid;
 }
@@ -110,6 +116,6 @@ void getUnitTest(UnitTestFunction tests[], char *list[])
 	tests[id]	= test_scanFile;
 	list[id++] = "test_scanFile";
 
-	tests[id]	= test_scanDir;
-	list[id++] = "test_scanDir";
+	tests[id]	= test_getListDir;
+	list[id++] = "test_getListDir";
 }

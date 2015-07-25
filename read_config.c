@@ -7,9 +7,9 @@ unsigned int getConfig(char * filename, struct config * conf) {
 
 	FILE *file;
 	char *s;
-	char buffer[CONFIG_BUFFER];
-	char name[CONFIG_BUFFER];
-	char value[CONFIG_BUFFER];
+	char buffer[CONFIG_DEFAULT_BUFFER];
+	char name[CONFIG_DEFAULT_BUFFER];
+	char value[CONFIG_DEFAULT_BUFFER];
 
 	if(!isFile(filename)) {
 		return CONFIG_ERROR_FILE_READ;
@@ -30,18 +30,18 @@ unsigned int getConfig(char * filename, struct config * conf) {
 		if (s == NULL) {
 			continue;
 		}
-		strncpy(name, trim(s), CONFIG_BUFFER);
+		strncpy(name, trim(s), CONFIG_DEFAULT_BUFFER);
 		s = strtok(NULL, CONFIG_DELIM);
 		if (s == NULL) {
 			continue;
 		}
-		strncpy(value, trim(s), CONFIG_BUFFER);
+		strncpy(value, trim(s), CONFIG_DEFAULT_BUFFER);
 
 		if(strcmp(name, CONFIG_STRUCT_SEARCH_DIR) == 0) {
-			strncpy((*conf).search_dir, value, CONFIG_BUFFER);
+			strncpy((*conf).search_dir, value, CONFIG_DEFAULT_BUFFER);
 		}
 		else if(strcmp(name, CONFIG_STRUCT_ACTION) == 0) {
-			strncpy((*conf).action, value, CONFIG_BUFFER);
+			strncpy((*conf).action, value, CONFIG_DEFAULT_BUFFER);
 		}
 		else if(strcmp(name, CONFIG_STRUCT_LIMIT) == 0) {
 			(*conf).limit = atoi(value);
@@ -50,7 +50,7 @@ unsigned int getConfig(char * filename, struct config * conf) {
 			(*conf).read_buffer = atoi(value);
 		}
 		else if(strcmp(name, CONFIG_STRUCT_OUTPUT) == 0) {
-			strncpy((*conf).output, value, CONFIG_BUFFER);
+			strncpy((*conf).output, value, CONFIG_DEFAULT_BUFFER);
 		}
 	}
 	fclose(file);   
@@ -78,7 +78,7 @@ unsigned int validateConfig(struct config * conf) {
 	}
 
 	if((*conf).read_buffer <= 0) {
-		return CONFIG_ERROR_BAD_CONFIG_BUFFER;
+		return CONFIG_ERROR_BAD_CONFIG_DEFAULT_BUFFER;
 	}
 
 	if(

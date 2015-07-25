@@ -48,8 +48,8 @@
 
 /* infile search */
 
-#define INFILE_SEARCH_MAX_CHAR_READ 1024
-#define INFILE_SEARCH_HAYSTACK "index.html"
+#define INFILE_SEARCH_DEFAULT_MAX_CHAR 1024
+#define INFILE_SEARCH_DEFAULT_FILENAME "index.html"
 
 #define INFILE_SEARCH_ERROR_OPENDIR 401
 #define INFILE_SEARCH_ERROR_READDIR 402
@@ -57,7 +57,9 @@
 /* read config */
 
 #define CONFIG_DELIM "="
-#define CONFIG_BUFFER 256
+#define CONFIG_DEFAULT_BUFFER 256
+#define CONFIG_DEFAULT_LIMIT 1024
+
 #define CONFIG_STRUCT_SEARCH_DIR "search_dir"
 #define CONFIG_STRUCT_ACTION "action"
 #define CONFIG_STRUCT_LIMIT "limit"

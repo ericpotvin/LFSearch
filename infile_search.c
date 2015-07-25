@@ -8,7 +8,7 @@ unsigned int scanFile(char * filename, char * searchString) {
 	FILE *fp;
 	int lineNumber = 0;
 	int numberOfResult = 0;
-	char currentStr[INFILE_SEARCH_MAX_CHAR_READ];
+	char currentStr[INFILE_SEARCH_DEFAULT_MAX_CHAR];
 
 	if(!isFile(filename)) {
 		return 0;
@@ -18,7 +18,7 @@ unsigned int scanFile(char * filename, char * searchString) {
 		return 0;
 	}
 
-	while(fgets(currentStr, INFILE_SEARCH_MAX_CHAR_READ, fp) != NULL) {
+	while(fgets(currentStr, INFILE_SEARCH_DEFAULT_MAX_CHAR, fp) != NULL) {
 		lineNumber++;
 		if((strstr(currentStr, searchString)) != NULL) {
 			printf("%s [%d]: %s\n", filename, lineNumber, trim(currentStr));
@@ -39,39 +39,44 @@ unsigned int scanFile(char * filename, char * searchString) {
 
 /**
  */
-unsigned int scanDir(char * root, char * searchString) {
+void getDirList(char * root, char * list[], int * count) {
+
 	DIR *dir;
 	struct dirent *entry;
 
 	dir = opendir(root);
 	if(!dir) {
-		return INFILE_SEARCH_ERROR_OPENDIR;
+		return;
 	}
-	entry = readdir(dir);
-	if(!entry) {
-		return INFILE_SEARCH_ERROR_READDIR;
+	if(*count >= CONFIG_DEFAULT_LIMIT) {
+		closedir(dir);
+		return;
 	}
 
-	do {
-		if (entry->d_type == DT_DIR) {
-			if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
-				continue;
-			}
-			char path[1024];
+	while ((entry = readdir(dir)) != NULL) {
+		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) {
+			continue;
+		}
+		if(entry->d_type == DT_DIR) {
+			char path[INFILE_SEARCH_DEFAULT_MAX_CHAR];
 			int len = snprintf(path, sizeof(path)-1, "%s/%s", root, entry->d_name);
-			path[len] = 0;
-			scanDir(path, searchString);
+			if(DEBUG) {
+				printf("DEBUG: Found Path: %s\n", path);
+			}
+			getDirList(path, list, count);
 		}
-		else if(strcmp(entry->d_name, INFILE_SEARCH_HAYSTACK) == 0) {
-			char file[1024];
+		else if(entry->d_type == DT_REG && strcmp(entry->d_name, INFILE_SEARCH_FILENAME_HAYSTACK) == 0) {
+			char file[INFILE_SEARCH_DEFAULT_MAX_CHAR];
 			snprintf(file, sizeof(file)-1, "%s/%s", root, entry->d_name);
-			scanFile(file, searchString);
+			if(DEBUG) {
+				printf("DEBUG: Found File: %s\n", file);
+			}
+	    list[(*count)] = strdup(file);
+			(*count)++;
+			if((*count) >= CONFIG_DEFAULT_LIMIT) {
+				return;
+			}
 		}
 	}
-	while (entry = readdir(dir));
-
 	closedir(dir);
-
-	return 0;
 }
-
