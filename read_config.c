@@ -78,7 +78,7 @@ unsigned int validateConfig(struct config * conf) {
 	}
 
 	if((*conf).read_buffer <= 0) {
-		return CONFIG_ERROR_BAD_CONFIG_DEFAULT_BUFFER;
+		return CONFIG_ERROR_BAD_CONFIG_BUFFER;
 	}
 
 	if(

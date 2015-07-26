@@ -65,7 +65,7 @@ void getDirList(char * root, char * list[], int * count) {
 			}
 			getDirList(path, list, count);
 		}
-		else if(entry->d_type == DT_REG && strcmp(entry->d_name, INFILE_SEARCH_FILENAME_HAYSTACK) == 0) {
+		else if(entry->d_type == DT_REG && strcmp(entry->d_name, INFILE_SEARCH_DEFAULT_FILENAME) == 0) {
 			char file[INFILE_SEARCH_DEFAULT_MAX_CHAR];
 			snprintf(file, sizeof(file)-1, "%s/%s", root, entry->d_name);
 			if(DEBUG) {
