@@ -5,6 +5,7 @@ struct config
   int limit;
   int read_buffer;
 	char output[CONFIG_DEFAULT_BUFFER];
+	char search_file[CONFIG_DEFAULT_BUFFER];
 } config;
 
 /**

@@ -4,12 +4,12 @@
 
 #define CONFIG_FILENAME "/tmp/test1.conf"
 
-#define CONFIG_GOOD_1 "search_dir=/tmp/\naction=scan\nlimit=1\nread_buffer=10\noutput=screen"
-#define CONFIG_GOOD_2 "search_dir=/tmp/\naction=get\nlimit=12\nread_buffer=100\noutput=file"
+#define CONFIG_GOOD_1 "search_dir=/tmp/\naction=scan\nlimit=1\nread_buffer=10\noutput=screen\nsearch_file="
+#define CONFIG_GOOD_2 "search_dir=/tmp/\naction=get\nlimit=12\nread_buffer=100\noutput=file\nsearch_file=test.txt"
 
 #define CONFIG_BAD_DIR "search_dir=/not_found_tmp/\naction=get\nlimit=1\nread_buffer=100\noutput=file"
 #define CONFIG_BAD_ACTION "search_dir=/tmp/\naction=list\nlimit=12\nread_buffer=100\noutput=file"
-#define CONFIG_BAD_LIMIT "search_dir=/tmp/\naction=get\nlimit=\nread_buffer=100\noutput=file"
+#define CONFIG_BAD_LIMIT "search_dir=/tmp/\naction=get\nlimit=-1\nread_buffer=100\noutput=file"
 #define CONFIG_BAD_BUFFER "search_dir=/tmp/\naction=get\nlimit=1\nread_buffer=-100\noutput=file"
 #define CONFIG_BAD_OUTPUT "search_dir=/tmp/\naction=get\nlimit=1\nread_buffer=100\noutput=xml"
 
@@ -46,6 +46,8 @@ int test_readConfig1() {
 
 	valid += assertTrue("test_readConfig1: The config has 'output=screen", strcmp(config.output, "screen") == 0);
 
+	valid += assertTrue("test_readConfig1: The config has 'search_file=index.html", strcmp(config.search_file, "index.html") == 0);
+
 	valid += assertTrue("test_readConfig1: The error should be 0", errno == STATUS_SUCCESS);
 
 	remove(CONFIG_FILENAME);
@@ -77,6 +79,8 @@ int test_readConfig2() {
 	valid += assertTrue("test_readConfig2: The config has 'output=screen", strcmp(config.output, "file") == 0);
 
 	valid += assertTrue("test_readConfig2: The error should be 0", errno == STATUS_SUCCESS);
+
+	valid += assertTrue("test_readConfig1: The config has 'search_file=test.txt", strcmp(config.search_file, "test.txt") == 0);
 
 	remove(CONFIG_FILENAME);
 

@@ -137,3 +137,11 @@ Allowed output:
 eg:
 
 	output=screen
+
+### search_file
+
+This allow to change the lookup filename
+
+eg:
+
+	test.html

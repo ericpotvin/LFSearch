@@ -65,6 +65,7 @@
 #define CONFIG_STRUCT_LIMIT "limit"
 #define CONFIG_STRUCT_READ_BUFFER "read_buffer"
 #define CONFIG_STRUCT_OUTPUT "output"
+#define CONFIG_STRUCT_SEARCH_FILE "search_file"
 
 #define CONFIG_VALID_ACTION_SCAN "scan"
 #define CONFIG_VALID_ACTION_GET "get"
