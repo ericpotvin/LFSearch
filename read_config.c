@@ -121,6 +121,3 @@ unsigned int validateConfig(struct config * conf) {
 
 	return STATUS_SUCCESS;
 }
-
-/**
- */

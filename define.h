@@ -20,7 +20,7 @@
 
 /* actions */
 
-#define ACTION_INVALID 100
+#define ACTION_UNKNOWN 100
 #define ACTION_GET 101
 #define ACTION_STORE 102
 #define ACTION_DELETE 103

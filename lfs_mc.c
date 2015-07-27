@@ -5,7 +5,7 @@
  */
 int main(int argc, char *argv[]) {
 	int result;
- 	int action = ACTION_INVALID;
+ 	int action = ACTION_UNKNOWN;
 	int type = TYPE_UNKNOWN;
 
 	// Validate data
