@@ -46,13 +46,13 @@ int test_scanFile() {
 	createFileTest(TEST_FILENAME);
 
 	result = scanFile(TEST_FILENAME, "the");
-	valid += assertTrue("test_scanFile: The file has 'the'", result == 1);
+	valid += assertTrue("test_scanFile: The file has 'the'", result == STATUS_SUCCESS);
 
 	result = scanFile(TEST_FILENAME, "900");
-	valid += assertTrue("test_scanFile: The file has '900'", result == 1);
+	valid += assertTrue("test_scanFile: The file has '900'", result == STATUS_SUCCESS);
 
 	result = scanFile(TEST_FILENAME, "apu nahasapeemapetilon");
-	valid += assertTrue("test_scanFile: The file does not have 'apu nahasapeemapetilon'", result == 0);
+	valid += assertTrue("test_scanFile: The file does not have 'apu nahasapeemapetilon'", result == STATUS_FAILURE);
 
 	remove(TEST_FILENAME);
 

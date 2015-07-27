@@ -20,7 +20,6 @@ memcached_st * mcConnect(char * server, int port) {
 	}
 
 	return memc;
-
 }
 
 /**
@@ -46,6 +45,7 @@ unsigned int mcExists(memcached_st *mc, char * key) {
 	if(DEBUG) {
 		printf("DEBUG: Key '%s' found\n", key);
 	}
+
 	return MEMCACHED_SUCCESS;	
 }
 
@@ -73,9 +73,11 @@ unsigned int mcStore(memcached_st *mc,
 		}
 		return MEMCACHED_SUCCESS;
 	}
+
 	if(DEBUG) {
 		printf("DEBUG: Couldn't store key: '%s'. Error: %s\n", key, memcached_strerror(mc, rc));
 	}
+
 	return MEMCACHED_FAILURE;
 }
 
@@ -103,6 +105,7 @@ unsigned int mcFetch(memcached_st *mc, char * key, char ** data) {
 	if(DEBUG) {
 		printf("DEBUG: Couldn't fetch key: '%s'. Error: %s\n", key, memcached_strerror(mc, mrc));
 	}
+
 	return MEMCACHED_FAILURE;
 }
 
@@ -129,6 +132,7 @@ unsigned int mcDelete(memcached_st *mc, char * key) {
 	if(DEBUG) {
 		printf("DEBUG: Couldn't delete key: '%s'. Error: %s\n", key, memcached_strerror(mc, rc));
 	}
+
 	return MEMCACHED_FAILURE;
 }
 

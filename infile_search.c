@@ -11,11 +11,11 @@ unsigned int scanFile(char * filename, char * searchString) {
 	char currentStr[INFILE_SEARCH_DEFAULT_MAX_CHAR];
 
 	if(!isFile(filename)) {
-		return 0;
+		return STATUS_FAILURE;
 	}
 
 	if((fp = fopen(filename, "r")) == NULL) {
-		return 0;
+		return STATUS_FAILURE;
 	}
 
 	while(fgets(currentStr, INFILE_SEARCH_DEFAULT_MAX_CHAR, fp) != NULL) {
@@ -34,7 +34,7 @@ unsigned int scanFile(char * filename, char * searchString) {
 		printf("DEBUG: Found %d occurence of %s in %s\n", numberOfResult, searchString, filename);
 	}
 
-	return numberOfResult > 0;
+	return numberOfResult > 0 ? STATUS_SUCCESS : STATUS_FAILURE;
 }
 
 /**
