@@ -19,13 +19,10 @@ SOURCE = infile_search.c util.c
 
 default: all 
 
-all: lfs_shm lfs_mc
+#all: lfs_shm lfs_mc
 
-lfs_shm: 
-	$(CC) $(CFLAGS) -o lfs_shm lfs_shm.c shared_memory.c $(SOURCE) -lcrypto -lssl -lrt
-
-lfs_mc: 
-	$(CC) $(CFLAGS) -o lfs_mc lfs_mc.c memcached.c $(SOURCE) -lcrypto -lmemcached -lpthread
+#lfsearch: 
+#	$(CC) $(CFLAGS) -o lfsearch lfssearch.c memcached.c $(SOURCE) -lcrypto -lmemcached -lpthread
 
 clean:
 	-rm -f lfs_shm lfs_mc
