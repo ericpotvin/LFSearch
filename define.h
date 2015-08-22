@@ -1,13 +1,21 @@
 #ifndef DEFINE_H
 #define DEFINE_H
 
-/* common */
+/* App */
 
 #define VERSION "0.1"
+#define APP "lfsearch"
+#define DESCRIPTION "Local File Search"
+
+/* common */
 
 #ifndef DEBUG 
 	#define DEBUG 0
 #endif
+
+/* settings */
+
+#define PARAM_PREFIX_COUNT 2
 
 /* status */
 
@@ -18,10 +26,15 @@
 
 #define INPUT_BAD_PARAM 10
 
+/* main */
+
+#define LFS_INVALID_CONFIG_FILE 51
+#define LFS_UNKOWN_PARAM 52
+
 /* actions */
 
 #define ACTION_UNKNOWN 100
-#define ACTION_GET 101
+#define ACTION_FETCH 101
 #define ACTION_STORE 102
 #define ACTION_DELETE 103
 #define ACTION_EXISTS 104
@@ -57,28 +70,48 @@
 /* read config */
 
 #define CONFIG_DELIM "="
-#define CONFIG_DEFAULT_BUFFER 256
+#define CONFIG_DEFAULT_BUFFER 255
 #define CONFIG_DEFAULT_LIMIT 1024
 
-#define CONFIG_STRUCT_SEARCH_DIR "search_dir"
 #define CONFIG_STRUCT_ACTION "action"
+#define CONFIG_STRUCT_ENGINE "engine"
+#define CONFIG_STRUCT_SEARCH "search"
+#define CONFIG_STRUCT_FILE "file"
 #define CONFIG_STRUCT_LIMIT "limit"
 #define CONFIG_STRUCT_READ_BUFFER "read_buffer"
 #define CONFIG_STRUCT_OUTPUT "output"
-#define CONFIG_STRUCT_SEARCH_FILE "search_file"
 
 #define CONFIG_VALID_ACTION_SCAN "scan"
-#define CONFIG_VALID_ACTION_GET "get"
+#define CONFIG_VALID_ACTION_EXISTS "exists"
+#define CONFIG_VALID_ACTION_FETCH "fetch"
+#define CONFIG_VALID_ACTION_STORE "store"
+#define CONFIG_VALID_ACTION_DELETE "delete"
+
+#define CONFIG_VALID_ENGINE_MEMCACHE "mc"
+#define CONFIG_VALID_ENGINE_SHARED_MEM "shm"
+
 #define CONFIG_VALID_OUTPUT_SCREEN "screen"
-#define CONFIG_VALID_OUTPUT_FILE "file"
 
 #define CONFIG_ERROR_FILE_READ 501
 #define CONFIG_ERROR_FILE_OPEN 502
-#define CONFIG_ERROR_BAD_CONFIG_DIR 503
-#define CONFIG_ERROR_BAD_CONFIG_ACTION 504
-#define CONFIG_ERROR_BAD_CONFIG_LIMIT 505
-#define CONFIG_ERROR_BAD_CONFIG_BUFFER 506
-#define CONFIG_ERROR_BAD_CONFIG_OUTPUT 507
+
+#define CONFIG_ERROR_ACTION 503
+#define CONFIG_ERROR_ENGINE 504
+#define CONFIG_ERROR_SEARCH 505
+#define CONFIG_ERROR_FILE 506
+#define CONFIG_ERROR_LIMIT 506
+#define CONFIG_ERROR_READ_BUFFER 507
+#define CONFIG_ERROR_OUTPUT 508
+#define CONFIG_ERROR_OUTPUT_FILE_EXISTS 509 
+
+/* user input */
+
+#define USER_INPUT_NO_INPUT 601
+#define USER_INPUT_NO_CONFIG_FOUND 602
+
+/* redis */
+
+#define REDIS_CONNECTION_FAIL	701
 
 /* END */
 
