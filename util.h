@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <libgen.h>
 #include <openssl/md5.h>
 #include <string.h>
 #include <stdio.h>
@@ -72,36 +73,3 @@ unsigned int isDir(char * dir);
  * Input: (Char*) md5: The md5 string
  */
 char * getMD5(char * string);
-
-/**
- * validateInput()
- * Validate the input parameters
- *
- * argv[0] = program
- * argv[1] = action (scan, get, store, delete, exists)
- * argv[2] = data to search
- * argv[3] = /path/to/filename
- *
- * Input: (Int) argc: The number of argument
- * Input: (Char*) argv[]: The arguments
- */
-unsigned int validateInput(int argc, char *argv[]);
-
-/**
- * validateAction()
- * Get the action
- *
- * Input: (Char*) val: The argument from the command line
- * Input: (Int*) action: The action
- * Return Int
- */
-unsigned int validateAction(char *val, int * action);
-
-/**
- * getFileType()
- * Get the file type
- *
- * Input: (Char*) file: The filename
- * Return Int
- */
-unsigned int getFileType(char * file, int * type);
